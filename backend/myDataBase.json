@@ -1,17 +1,41 @@
 {
-    "test2": {
-        "my": {
-            "test": 10
-        }
-    },
-    "test3": {
-        "test": "test",
-        "json": {
-            "test": [
-                "test"
-            ],
-            "important": 5
+  "room": {
+
+  },
+  "plants": [
+    {
+      "name": "radiser",
+      "timestamp": [
+        {
+          "date":"11-12-2016 16:30",
+          "humidity":324
         },
-        "new": "cool"
+        {
+          "date":"11-12-2016 16:00",
+          "humidity":310
+        },
+        {
+          "date":"11-12-2016 15:30",
+          "humidity":300
+        }
+      ]
+    },
+    {
+      "name":"guleroder",
+      "timestamp": [
+        {
+          "date":"11-12-2016 16:30",
+          "humidity":400
+        },
+        {
+          "date":"11-12-2016 16:00",
+          "humidity":400
+        },
+        {
+          "date":"11-12-2016 15:30",
+          "humidity":380
+        }
+      ]
     }
+  ]
 }
