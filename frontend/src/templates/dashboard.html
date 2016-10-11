@@ -1,0 +1,133 @@
+<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+  <div class="col-xs-12">
+    <uib-alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+  </div>
+</div>
+
+<!--<div class="row">
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon green pull-left">
+					<i class="fa fa-users"></i>
+				</div>
+				<div class="title">82</div>
+				<div class="comment">Withdrawals</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon red pull-left">
+					<i class="fa fa-tasks"></i>
+				</div>
+				<div class="title">14</div>
+				<div class="comment">Deposits</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon orange pull-left">
+					<i class="fa fa-sitemap"></i>
+				</div>
+				<div class="title">10.431,41</div>
+				<div class="comment">Total balance</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon blue pull-left">
+					<i class="fa fa-support"></i>
+				</div>
+				<div class="title">3</div>
+				<div class="comment">Accounts</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>-->
+
+<!--
+<div class="row">
+	<div class="col-lg-6">
+		<rd-widget>
+      		<rd-widget-header icon="fa-tasks" title="Transactions">
+				<input type="text" placeholder="Search" class="form-control input-sm" />
+      		</rd-widget-header>
+      		<rd-widget-body classes="medium no-padding">
+				<div class="table-responsive">
+					<table class="table">
+					<thead>
+						<tr><th>Date</th><th>Text</th><th>Amount</th><th>Balance</th></tr>
+					</thead>
+						<tbody>
+							<tr><td>11.11.2015</td><td>Transfer</td><td>-256,12</td><td>5.659,63</td></tr>
+							<tr><td>11.11.2015</td><td>Transfer</td><td>953</td><td>5.126,63</td></tr>
+							<tr><td>11.11.2015</td><td>Transfer</td><td>-256</td><td>5.659,63</td></tr>
+							<tr><td>11.11.2015</td><td>Transfer</td><td>-256</td><td>5.659,63</td></tr>
+							<tr><td>11.11.2015</td><td>Transfer</td><td>-256</td><td>5.659,63</td></tr>
+							<tr><td>11.11.2015</td><td>Transfer</td><td>-256</td><td>5.659,63</td></tr>
+							<tr><td>11.11.2015</td><td>Transfer</td><td>-256</td><td>5.659,63</td></tr>
+							<tr><td>11.11.2015</td><td>Transfer</td><td>-256</td><td>5.659,63</td></tr>
+						</tbody>
+					</table>
+				</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-6">
+		<rd-widget>
+			<rd-widget-header icon="fa-users" title="Accounts">
+				<!--<input type="text" placeholder="Search" class="form-control input-sm" />-->
+			<!--</rd-widget-header>
+			<rd-widget-body classes="medium no-padding">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr><th class="text-center">ID</th><th>Account name</th><th>Card</th><th>Balance</th></tr>
+						</thead>
+						<tbody>
+							<tr><td class="text-center">1</td><td>Primary</td><td>Mastercard</td><td>3.953,63</td></tr>
+							<tr><td class="text-center">2</td><td>Budet</td><td></td><td>651,81</td></tr>
+							<tr><td class="text-center">3</td><td>Savings</td><td>Mastercard</td><td>6.889,23</td></tr>
+						</tbody>
+					</table>
+        		</div>
+			</rd-widget-body>
+		<rd-widget>
+	</div>
+</div>
+-->
+<!--
+<div class="row">
+	<div class="col-lg-6">
+   		<rd-widget>
+   			<rd-widget-header icon="fa-plus" title="Extras">
+   				<button class="btn btn-sm btn-info">Button</button>
+   			</rd-widget-header>
+   			<rd-widget-body>
+				<div class="message">
+					This is a standard message which will also work the ".no-padding" class, I can also <span class="error">be an error message!</span>
+				</div>
+				<hr />
+				<div class="message">
+					<a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
+				</div>
+   			</rd-widget-body>
+   		</rd-widget>
+	</div>
+	<div class="col-lg-6">
+		<rd-widget>
+			<rd-widget-header icon="fa-cog fa-spin" title="Loading Directive">
+				<a href="http://tobiasahlin.com/spinkit/" target="_blank">SpinKit</a>
+			</rd-widget-header>
+			<rd-widget-body>
+				<rd-loading></rd-loading>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>-->
