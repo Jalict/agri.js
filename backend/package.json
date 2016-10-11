@@ -1,0 +1,27 @@
+{
+  "name": "agri.js",
+  "version": "0.0.1",
+  "description": "Automatic plant handling",
+  "main": "server.js",
+  "dependencies": {
+    "node-json-db": "^0.7.3",
+    "sqlite3": "^3.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jalict/agri.js.git"
+  },
+  "author": [
+    "Frans Peter Larsen",
+    "Martin Meincke"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jalict/agri.js/issues"
+  },
+  "homepage": "https://github.com/Jalict/agri.js#readme"
+}

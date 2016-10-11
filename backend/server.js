@@ -1,63 +1,57 @@
 var JsonDB = require('node-json-db');
+net = require('net');
 //The second argument is used to tell the DB to save after each push
 //If you put false, you'll have to call the save() method.
 //The third argument is to ask JsonDB to save the database in an human readable format. (default false)
-var db = new JsonDB("agrobase", true, true);
 
-//Pushing the data into the database
-//With the wanted DataPath
-//By default the push will override the old value
-db.push("/test1","super test");
+var clients = [];
+var db = new JsonDB("farm", true, true);
+db.push("/devices/connected", clients.length);
 
-//It also create automatically the hierarchy when pushing new data for a DataPath that doesn't exists
-db.push("/test2/my/test",5);
+// Start a TCP Server
+net.createServer(function (socket) {
+  //TODO Find unique identifier for Sockets
 
-//You can also push directly objects
-db.push("/test3", {test:"test", json: {test:["test"]}});
+  clients.push(socket);
+  console.log("New device connected, active devices: " + clients.length);
 
-//If you don't want to override the data but to merge them
-//The merge is recursive and work with Object and Array.
-db.push("/test3", {new:"cool", json: {important : 5}}, false);
-/*
-This give you this results :
-{
-   "test":"test",
-   "json":{
-      "test":[
-         "test"
-      ],
-      "important":5
-   },
-   "new":"cool"
-}
-*/
-//You can't merge primitive.
-//If you do this:
-db.push("/test2/my/test/",10,false);
-//the data will be overriden
+  db.push("/devices/connected", clients.length);
 
-//Get the data from the root
-var data = db.getData("/");
+  // Handle incoming messages from clients.
+  socket.on('data', function (data) {
+    var message = String(data);             // Convert data to string
+    var index = -1;                         // Init index,
+    if(message.substring(0,5) == "index")   // Check if message contains index
+      index = message.substring(5,6);       // Get index
 
-//From a particular DataPath
-var data = db.getData("/test1");
+    if(index === -1)
+      return;         // if -1, then invalid index and discard message
 
-//If you try to get some data from a DataPath that doesn't exists
-//You'll get an Error
-try {
-var data = db.getData("/test1/test/dont/work");
-} catch(error) {
-//The error will tell you where the DataPath stopped. In this case test1
-//Since /test1/test does't exist.
-    console.error(error);
-}
+    try {
+      var name = db.getData("/plants[" + index + "]/name");
+    } catch(error) {
+      db.push("/plants[" + index + "]/name", "noname")
+    }
 
-//Deleting data
-db.delete("/test1");
+    if(message.substring(6,14) == "humidity") {
+      var time =  Date.now();
+      var value = message.substring(14, message.length - 2); // Ends with \n MAYBE
 
-//Save the data (useful if you disable the saveOnPush)
-db.save();
+      db.push("/plants[" + index + "]/timestamp[]", {
+        "time": time,
+        "humidity": value
+      });
+      console.log("Added humidity " + value + " for index " + index);
+    }
+  });
 
-//In case you have a exterior change to the databse file and want to reload it
-//use this method
-db.reload();
+  // Remove the client from the list when it leaves
+  socket.on('end', function () {
+    clients.splice(clients.indexOf(socket), 1);
+    db.push("/devices/connected", clients.length);
+    console.log("Device disconnected, active devices: " + clients.length);
+  });
+
+}).listen(5000);
+
+console.log("Chat server running at port 5000\n");
