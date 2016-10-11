@@ -13,9 +13,10 @@ net.createServer(function (socket) {
   //TODO Find unique identifier for Sockets
 
   clients.push(socket);
-  console.log("New device connected, active devices: " + clients.length);
 
   db.push("/devices/connected", clients.length);
+
+  console.log("New device connected, active devices: " + clients.length);
 
   // Handle incoming messages from clients.
   socket.on('data', function (data) {
