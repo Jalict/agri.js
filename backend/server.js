@@ -22,6 +22,7 @@ net.createServer(function (socket) {
   socket.on('data', function (data) {
     var message = String(data);             // Convert data to string
     var index = -1;                         // Init index,
+    var time =  Date.now();                 // When I received this message
     if(message.substring(0,5) == "index")   // Check if message contains index
       index = message.substring(5,6);       // Get index
 
@@ -34,15 +35,29 @@ net.createServer(function (socket) {
       db.push("/plants[" + index + "]/name", "noname")
     }
 
+    //TODO Make substringing more clever. Be able to detect cmds better
     if(message.substring(6,14) == "humidity") {
-      var time =  Date.now();
-      var value = message.substring(14, message.length - 2); // Ends with \n MAYBE
+      var value = parseInt(message.substring(14, message.length - 2)); // Ends with \n MAYBE
 
-      db.push("/plants[" + index + "]/timestamp[]", {
+      if(value > 1023) {
+        console.log(value + " is too high humidity");
+        return;
+      } else if(value < 0) {
+        console.log(value + " is too low humidity");
+        return;
+      } else if(value == "") {
+        console.log("humidity value is empty");
+        return;
+      }
+
+      db.push("/plants[" + index + "]/humidity[]", {
         "time": time,
-        "humidity": value
+        "value": value
       });
       console.log("Added humidity " + value + " for index " + index);
+    } else if(message.substring(6,13) == "watered") {
+      db.push("/plants[" + index + "]/watered[]", {"time": time});
+      console.log("Added watered for index " + index);
     }
   });
 
