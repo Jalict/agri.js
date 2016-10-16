@@ -65,7 +65,7 @@ void loop() {
             if(watering[i])
                 digitalWrite(waterpumps[i], HIGH);
         }
-        sleep(1000);
+        delay(1000);
         for(int i = 0; i < watering.length;i++){
                 digitalWrite(waterpumps[i], LOW);
         }
